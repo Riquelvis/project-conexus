@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100vh;
+    width: 100dvw;
+    background-image: url('imagem/imagem_fundo.jpeg'); /* Caminho da imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif; /* Fonte moderna e legível */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 480px;
+    min-height: 440px;
+    max-height: 500px;
+    width: 100%;
+    max-width: 400px; /* Limita a largura do formulário */
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente para destacar o formulário */
+    border-radius: 15px;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+header .logo {
+    width: 120px; /* Ajuste o tamanho do logo */
+    height: auto;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 55px;
+    border: 2px solid #729DF2;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: white;
+    flex-direction: row-reverse;
+}
+
+.input-field input {
+    width: 82%;
+    height: 100%;
+    padding: 0 20px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 0 8px 8px 0;
+    color: #333;
+}
+
+.input-field input::placeholder {
+    color: #aaa;
+}
+
+.input-field label {
+    width: 18%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    border-radius: 8px 0 0 8px;
+}
+
+.input-field label img {
+    width: 30px;
+    height: 30px;
+}
+
+form button {
+    height: 55px;
+    background-color: #729DF2;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+form button:hover {
+    background-color: #5b85d1; /* Cor mais escura ao passar o mouse */
+}
+
+form button:active {
+    background-color: #4a6ca1; /* Cor ainda mais escura quando pressionado */
+}
