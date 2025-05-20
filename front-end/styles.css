@@ -6,7 +6,7 @@
 
 body, html {
     height: 100vh;
-    width: 100dvw;
+    width: 100%;
     background-image: url('imagem/imagem_fundo.jpeg'); /* Caminho da imagem de fundo */
     background-size: cover;
     background-position: center;
@@ -19,15 +19,15 @@ body, html {
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 480px;
-    min-height: 440px;
-    max-height: 500px;
-    width: 100%;
-    max-width: 400px; /* Limita a largura do formulário */
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente para destacar o formulário */
+    justify-content: center;
+    max-width: 829px; /* Limita o tamanho máximo */
+    width: 90%; /* Ajusta a largura para ser responsiva */
+    height: auto; /* Altura automática para ajustar ao conteúdo */
+    border: 2px solid rgb(98, 139, 220);
+    background-color: rgb(44, 77, 135, 0.3); /* Fundo semitransparente */
     border-radius: 15px;
     padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar o container */
 }
 
 header {
@@ -37,8 +37,10 @@ header {
 }
 
 header .logo {
-    width: 120px; /* Ajuste o tamanho do logo */
-    height: auto;
+    width: 150px; /* Reduz o tamanho do logo para telas menores */
+    height: 150px;
+    position: relative;
+    top: 0;
 }
 
 main {
@@ -58,8 +60,11 @@ form {
 .input-field {
     display: flex;
     align-items: center;
+    align-self: center;
     justify-content: space-between;
-    height: 55px;
+    height: 64px;
+    width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 639px; /* Limita o tamanho máximo */
     border: 2px solid #729DF2;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -99,8 +104,13 @@ form {
 
 form button {
     height: 55px;
+    width: 100%; /* Botão ocupa toda a largura disponível */
+    max-width: 347px; /* Limita o tamanho máximo */
+    align-self: center;
+    margin-top: 20px; /* Espaçamento acima do botão */
+    border-color: cornsilk;
     background-color: #729DF2;
-    border: none;
+    border: solid 1px;
     border-radius: 10px;
     color: white;
     outline: none;
@@ -115,4 +125,48 @@ form button:hover {
 
 form button:active {
     background-color: #4a6ca1; /* Cor ainda mais escura quando pressionado */
+}
+
+/* Media Queries para Responsividade */
+
+/* Telas pequenas (celulares) */
+@media (max-width: 768px) {
+    .container {
+        height: auto; /* Altura automática para ajustar ao conteúdo */
+        padding: 15px; /* Reduz o espaçamento interno */
+    }
+
+    header .logo {
+        width: 100px; /* Reduz ainda mais o tamanho do logo */
+        height: 100px;
+    }
+
+    .input-field {
+        height: 50px; /* Reduz a altura dos campos de entrada */
+        font-size: 16px; /* Reduz o tamanho da fonte */
+    }
+
+    .input-field input {
+        font-size: 16px; /* Reduz o tamanho da fonte */
+    }
+
+    form button {
+        height: 45px; /* Reduz a altura do botão */
+        font-size: 16px; /* Reduz o tamanho da fonte */
+    }
+}
+
+/* Telas médias (tablets) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 600px; /* Reduz o tamanho máximo do container */
+    }
+
+    .input-field {
+        max-width: 500px; /* Reduz o tamanho máximo dos campos de entrada */
+    }
+
+    form button {
+        max-width: 300px; /* Reduz o tamanho máximo do botão */
+    }
 }
