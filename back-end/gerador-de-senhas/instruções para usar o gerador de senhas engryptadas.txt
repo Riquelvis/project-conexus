@@ -1,0 +1,10 @@
+1-navegue no terminal ate o arquivo gerador-de-senha
+ex:cd project-conexus (de enter)
+   cd back-end (de enter)
+   cd gerador-de-senhas
+2-entre no arquivo Node.js e substitua a senha a pela qual você quer, depois disso salve o arquivo
+3-utilize este comando no terminal node Node.js
+
+ex de resuldado : senha:juninho124212
+		  resultado no terminal da senha encpytada:$2b$10$MMeDH1tsMH0Wrt4qcfTn0OgB/YValuRVBAkhU2uzIof91Zl.TpAwK
+	

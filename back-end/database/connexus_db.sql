@@ -5,7 +5,7 @@
 -- Dumped from database version 16.4
 -- Dumped by pg_dump version 16.4
 
--- Started on 2025-05-19 21:54:38
+-- Started on 2025-05-23 15:38:01
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 4882 (class 1262 OID 16767)
+-- TOC entry 4885 (class 1262 OID 16767)
 -- Name: connexus_db; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -52,7 +52,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO pg_database_owner;
 
 --
--- TOC entry 4884 (class 0 OID 0)
+-- TOC entry 4887 (class 0 OID 0)
 -- Dependencies: 4
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
@@ -99,7 +99,7 @@ CREATE SEQUENCE public.clientes_id_cliente_seq
 ALTER SEQUENCE public.clientes_id_cliente_seq OWNER TO postgres;
 
 --
--- TOC entry 4886 (class 0 OID 0)
+-- TOC entry 4889 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: clientes_id_cliente_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -143,7 +143,7 @@ CREATE SEQUENCE public.enderecos_id_endereco_seq
 ALTER SEQUENCE public.enderecos_id_endereco_seq OWNER TO postgres;
 
 --
--- TOC entry 4888 (class 0 OID 0)
+-- TOC entry 4891 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: enderecos_id_endereco_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -185,7 +185,7 @@ CREATE SEQUENCE public.historico_interacoes_id_interacao_seq
 ALTER SEQUENCE public.historico_interacoes_id_interacao_seq OWNER TO postgres;
 
 --
--- TOC entry 4890 (class 0 OID 0)
+-- TOC entry 4893 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: historico_interacoes_id_interacao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -204,7 +204,9 @@ CREATE TABLE public.usuarios (
     email character varying(255) NOT NULL,
     senha character varying(255) NOT NULL,
     data_criacao timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
-    tipo_usuario character varying(20) DEFAULT 'colaborador'::character varying
+    tipo_usuario character varying(20) DEFAULT 'colaborador'::character varying,
+    username character varying(255),
+    nivel_acesso integer DEFAULT 1
 );
 
 
@@ -227,7 +229,7 @@ CREATE SEQUENCE public.usuarios_id_usuario_seq
 ALTER SEQUENCE public.usuarios_id_usuario_seq OWNER TO postgres;
 
 --
--- TOC entry 4892 (class 0 OID 0)
+-- TOC entry 4895 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -268,27 +270,29 @@ ALTER TABLE ONLY public.usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4870 (class 0 OID 16769)
+-- TOC entry 4873 (class 0 OID 16769)
 -- Dependencies: 216
 -- Data for Name: clientes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.clientes (id_cliente, nome, email, telefone, data_nascimento, data_cadastro, status) FROM stdin;
+1	João Silva	joao.silva@example.com	123456789	1990-05-15	2025-05-22 07:59:24.779426	ativo
 \.
 
 
 --
--- TOC entry 4872 (class 0 OID 16782)
+-- TOC entry 4875 (class 0 OID 16782)
 -- Dependencies: 218
 -- Data for Name: enderecos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.enderecos (id_endereco, id_cliente, logradouro, numero, bairro, cidade, estado, cep) FROM stdin;
+1	1	Rua A	123	Centro	Natividade	TO	77300000
 \.
 
 
 --
--- TOC entry 4874 (class 0 OID 16796)
+-- TOC entry 4877 (class 0 OID 16796)
 -- Dependencies: 220
 -- Data for Name: historico_interacoes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -298,35 +302,37 @@ COPY public.historico_interacoes (id_interacao, id_cliente, data_interacao, tipo
 
 
 --
--- TOC entry 4876 (class 0 OID 16811)
+-- TOC entry 4879 (class 0 OID 16811)
 -- Dependencies: 222
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.usuarios (id_usuario, nome, email, senha, data_criacao, tipo_usuario) FROM stdin;
+COPY public.usuarios (id_usuario, nome, email, senha, data_criacao, tipo_usuario, username, nivel_acesso) FROM stdin;
+5	João Gabriel	joaogabriil896@gmail.com	$2b$10$dhY1pVX.OlOv8slJoy7nueFBxSi2MRBEX2xBbLV/n/5E.UK88QOUe	2025-05-23 13:57:26.792035	colaborador	joao gabriel	2
+2	Administrador	admin@connexus.com	$2b$10$A0tRyMcOPvtn92.PCMqRwuFaJiHpB1nAh/Gvkj76tVJTLXvN.JSkG	2025-05-22 10:43:33.852987	Admin	admin2	3
 \.
 
 
 --
--- TOC entry 4893 (class 0 OID 0)
+-- TOC entry 4896 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: clientes_id_cliente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.clientes_id_cliente_seq', 1, false);
+SELECT pg_catalog.setval('public.clientes_id_cliente_seq', 1, true);
 
 
 --
--- TOC entry 4894 (class 0 OID 0)
+-- TOC entry 4897 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: enderecos_id_endereco_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.enderecos_id_endereco_seq', 1, false);
+SELECT pg_catalog.setval('public.enderecos_id_endereco_seq', 1, true);
 
 
 --
--- TOC entry 4895 (class 0 OID 0)
+-- TOC entry 4898 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: historico_interacoes_id_interacao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -335,16 +341,16 @@ SELECT pg_catalog.setval('public.historico_interacoes_id_interacao_seq', 1, fals
 
 
 --
--- TOC entry 4896 (class 0 OID 0)
+-- TOC entry 4899 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 1, false);
+SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 5, true);
 
 
 --
--- TOC entry 4713 (class 2606 OID 16780)
+-- TOC entry 4714 (class 2606 OID 16780)
 -- Name: clientes clientes_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -353,7 +359,7 @@ ALTER TABLE ONLY public.clientes
 
 
 --
--- TOC entry 4715 (class 2606 OID 16778)
+-- TOC entry 4716 (class 2606 OID 16778)
 -- Name: clientes clientes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -362,7 +368,7 @@ ALTER TABLE ONLY public.clientes
 
 
 --
--- TOC entry 4717 (class 2606 OID 16789)
+-- TOC entry 4718 (class 2606 OID 16789)
 -- Name: enderecos enderecos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -371,7 +377,7 @@ ALTER TABLE ONLY public.enderecos
 
 
 --
--- TOC entry 4719 (class 2606 OID 16804)
+-- TOC entry 4720 (class 2606 OID 16804)
 -- Name: historico_interacoes historico_interacoes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -380,7 +386,7 @@ ALTER TABLE ONLY public.historico_interacoes
 
 
 --
--- TOC entry 4721 (class 2606 OID 16822)
+-- TOC entry 4722 (class 2606 OID 16822)
 -- Name: usuarios usuarios_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -389,7 +395,7 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 4723 (class 2606 OID 16820)
+-- TOC entry 4724 (class 2606 OID 16820)
 -- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -398,7 +404,16 @@ ALTER TABLE ONLY public.usuarios
 
 
 --
--- TOC entry 4724 (class 2606 OID 16790)
+-- TOC entry 4726 (class 2606 OID 16825)
+-- Name: usuarios usuarios_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_username_key UNIQUE (username);
+
+
+--
+-- TOC entry 4727 (class 2606 OID 16790)
 -- Name: enderecos enderecos_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -407,7 +422,7 @@ ALTER TABLE ONLY public.enderecos
 
 
 --
--- TOC entry 4725 (class 2606 OID 16805)
+-- TOC entry 4728 (class 2606 OID 16805)
 -- Name: historico_interacoes historico_interacoes_id_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -416,51 +431,51 @@ ALTER TABLE ONLY public.historico_interacoes
 
 
 --
--- TOC entry 4883 (class 0 OID 0)
--- Dependencies: 4882
+-- TOC entry 4886 (class 0 OID 0)
+-- Dependencies: 4885
 -- Name: DATABASE connexus_db; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON DATABASE connexus_db TO admin_connexus;
+GRANT ALL ON DATABASE connexus_db TO admin2004;
 
 
 --
--- TOC entry 4885 (class 0 OID 0)
+-- TOC entry 4888 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: TABLE clientes; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON TABLE public.clientes TO admin_connexus;
+GRANT ALL ON TABLE public.clientes TO admin2004;
 
 
 --
--- TOC entry 4887 (class 0 OID 0)
+-- TOC entry 4890 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: TABLE enderecos; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON TABLE public.enderecos TO admin_connexus;
+GRANT ALL ON TABLE public.enderecos TO admin2004;
 
 
 --
--- TOC entry 4889 (class 0 OID 0)
+-- TOC entry 4892 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: TABLE historico_interacoes; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON TABLE public.historico_interacoes TO admin_connexus;
+GRANT ALL ON TABLE public.historico_interacoes TO admin2004;
 
 
 --
--- TOC entry 4891 (class 0 OID 0)
+-- TOC entry 4894 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: TABLE usuarios; Type: ACL; Schema: public; Owner: postgres
 --
 
-GRANT ALL ON TABLE public.usuarios TO admin_connexus;
+GRANT ALL ON TABLE public.usuarios TO admin2004;
 
 
--- Completed on 2025-05-19 21:54:38
+-- Completed on 2025-05-23 15:38:01
 
 --
 -- PostgreSQL database dump complete

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Novo Cliente - Connexus</title>
+    <link rel="stylesheet" href="home.css"> <link rel="stylesheet" href="cadastro_cliente.css"> </head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="welcome-message">
+                <span>BEM-VINDO, COLABORADOR</span>
+                <img src="imagem/logo_home.png" alt="Ícone do Usuário" class="user-icon">
+            </div>
+            <div class="dropdown-menu">
+                <ul>
+                    <li>HISTÓRICO/LOG</li>
+                    <li>CLIENTES</li>
+                    <li>LOGOUT</li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="form-container">
+                <a href="home_Colaborador.html" class="back-arrow" title="Voltar">←</a>
+                <h2>CADASTRO NOVO CLIENTE</h2>
+
+                <form id="cadastroForm">
+                    <div class="form-group full-width">
+                        <label for="nome">NOME COMPLETO:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="rg_uf">RG/UF:</label>
+                            <input type="text" id="rg_uf" name="rg_uf">
+                        </div>
+                        <div class="form-group">
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" id="cnpj" name="cnpj">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="data_nascimento">DATA DE NASCIMENTO:</label>
+                            <input type="date" id="data_nascimento" name="data_nascimento">
+                        </div>
+                        <div class="form-group">
+                            <label for="naturalidade">NATURALIDADE:</label>
+                            <input type="text" id="naturalidade" name="naturalidade">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group large">
+                            <label for="logradouro">LOGRADOURO (Rua/Av.):</label>
+                            <input type="text" id="logradouro" name="logradouro">
+                        </div>
+                         <div class="form-group small">
+                            <label for="numero">NÚMERO:</label>
+                            <input type="text" id="numero" name="numero">
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="bairro">BAIRRO:</label>
+                            <input type="text" id="bairro" name="bairro">
+                        </div>
+                         <div class="form-group">
+                            <label for="cep">CEP:</label>
+                            <input type="text" id="cep" name="cep">
+                        </div>
+                    </div>
+                     <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cidade">CIDADE:</label>
+                            <input type="text" id="cidade" name="cidade">
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">ESTADO:</label>
+                            <input type="text" id="estado" name="estado">
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="email">EMAIL:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="telefone">TELEFONE:</label>
+                        <input type="tel" id="telefone" name="telefone">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="observacoes">OBSERVAÇÕES:</label>
+                        <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="save-button">SALVAR</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="menu_script.js"></script> 
+</body>
+</html>

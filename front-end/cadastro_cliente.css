@@ -1,0 +1,164 @@
+/* Estilos para o formulário de cadastro de cliente */
+
+.dashboard-main {
+    align-items: flex-start; /* Alinha o formulário ao topo */
+    padding-top: 20px;
+    overflow-y: auto; /* Permite rolar se o formulário for longo */
+    display: flex; /* Garante centralização do form-container */
+    justify-content: center; /* Centraliza o form-container */
+    align-items: flex-start; /* Alinha no topo */
+}
+
+.form-container {
+    background-color: #1e2a3a; /* Tom de cinza-azulado escuro, mais sólido */
+    padding: 30px 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 800px; /* Largura máxima do formulário */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    position: relative;
+    margin-bottom: 30px; /* Espaço na parte inferior */
+    border: 1px solid rgba(100, 116, 139, 0.4); /* Borda sutil */
+}
+
+.back-arrow {
+    position: absolute;
+    top: 35px; /* Alinhado com o Título */
+    left: 25px;
+    font-size: 1.8em;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+.back-arrow:hover {
+    color: #729DF2; /* Cor de destaque */
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+#cadastroForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Espaço vertical entre os grupos de campos */
+}
+
+.form-grid {
+    display: flex;
+    gap: 25px; /* Espaço horizontal entre os campos */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Faz os campos dividirem o espaço */
+    min-width: 200px; /* Largura mínima antes de quebrar */
+}
+
+.form-group.full-width {
+    width: 100%;
+    flex: none;
+    min-width: auto;
+}
+
+.form-group.large { flex: 3; } /* Logradouro maior */
+.form-group.small { flex: 1; } /* Número menor */
+
+.form-group label {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #c0c0c0; /* Cor mais suave para o label */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group textarea {
+    background-color: #3b4a5a; /* Cinza escuro para inputs */
+    border: 1px solid #5A6A7A;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #ffffff;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #a0b4c8; /* Placeholder mais claro */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #729DF2; /* Cor de destaque no foco */
+    box-shadow: 0 0 5px rgba(114, 157, 242, 0.5);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.save-button {
+    background-color: #6187D1; /* Tom de azul do Figma */
+    color: #ffffff;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 25px;
+    align-self: center; /* Centraliza o botão */
+    width: 40%;
+    max-width: 280px;
+    text-transform: uppercase;
+}
+
+.save-button:hover {
+    background-color: #729DF2; /* Mais claro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.save-button:active {
+    background-color: #5b85d1; /* Mais escuro ao clicar */
+    transform: translateY(0);
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 768px) {
+    .form-grid {
+        flex-direction: column;
+        gap: 18px;
+    }
+    .form-group {
+        min-width: 100%;
+    }
+    .save-button {
+        width: 70%;
+    }
+     .form-container {
+        padding: 20px 25px;
+    }
+    .form-container h2 {
+        font-size: 1.4em;
+    }
+    .back-arrow {
+        top: 25px;
+        left: 15px;
+    }
+}
